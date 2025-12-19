@@ -1,84 +1,74 @@
-# Firebase Hosting & Web SDK — WebProject-V1
+# Online Faculty Staff Directory for Multi University
 
-Quick steps to connect this project to your Firebase project and deploy the HTML/CSS.
-
-Prerequisites
-
-- Node.js + npm installed
-- Firebase project already created (you provided: `web-project-efe6a`)
-
-1. Install Firebase CLI
-
-```powershell
-npm install -g firebase-tools
-```
-
-2. Login and select your project
-
-```powershell
-firebase login
-cd "Projec\WebProject-V4"
-firebase init hosting
-
-# During init:
-# - Select the existing project `web-project-efe6a`
-# - Set the public directory to `public` (recommended) or `.` (advanced)
-# - Choose 'No' for single-page app unless you want SPA behavior
-```
-
-3. Prepare `public` folder (recommended)
-
-I created a `public/` folder in the project and copied your HTML/CSS there. `DoctorDirectory.html` was copied as `public/index.html`.
-
-If you prefer to keep files in the repository root instead, you can set the `public` value in `firebase.json` to `.` instead of `public`.
-
-To view locally without deploying, run a simple static server (from project root):
-
-```powershell
-npx serve public
-```
-
-4. Add your Firebase web config into `DoctorDirectory.html`
-
-- Open `DoctorDirectory.html` and replace the placeholder values in the `firebaseConfig` object with the real values from:
-  Firebase Console → Project settings → Your apps → SDK setup and configuration
-
-5. Deploy
-
-```powershell
-cd "Projec\WebProject-V1"
-firebase deploy --only hosting
-```
-
-Notes
-
-- If you want to use Firestore or Authentication, enable them in the Firebase Console and update the HTML/JS to call the APIs.
-- For a Java backend (Admin SDK), see the `Java backend notes` section below (not implemented here).
-
-## Java Backend
-
-A Spring Boot backend is set up in `java-backend/` with Firebase Admin SDK for CRUD operations on doctors.
-
-### Setup Backend
-
-1. Go to `java-backend/`
-2. Download Firebase service account key as `serviceAccountKey.json` in the folder.
-3. Update the path in `DoctorDirectoryBackendApplication.java`.
-4. Enable Firestore in Firebase Console.
-5. Run: `mvn spring-boot:run`
-
-### API Calls
-
-The web app needs to be updated to call the backend APIs for dynamic data. For example, replace static doctor cards with fetch calls to `http://localhost:8080/api/doctors`.
-
-For sign-in, use Firebase Auth in the web app, then send token to backend for verification.
-
-For add/edit, submit forms via fetch to POST/PUT to the API.
+A web-based academic system that allows students to browse, search, and view university faculty members across multiple universities.  
+The system provides an admin dashboard for managing faculty profiles and a public interface for students to access faculty information easily.
 
 ---
 
-Java backend notes
+## 📌 Project Overview
 
-- Add `firebase-admin` to your Java project (via Maven/Gradle) and provide a service account JSON from
-  Firebase Console → Project settings → Service accounts → Generate new private key.
-- Keep `serviceAccountKey.json` out of source control.
+The **Online Faculty Staff Directory** is designed as an academic project for the _Software Engineering_ course.  
+Its main goal is to improve accessibility to faculty information and reduce the time and effort required for students to find academic staff details.
+
+---
+
+## 🎯 Key Features
+
+### Student (Public Access)
+
+- View faculty members without login
+- Search faculty by:
+  - Name
+  - Department
+  - Courses taught
+  - Area of expertise
+- View detailed faculty profiles
+
+### Admin (Web Dashboard)
+
+- Admin authentication
+- Add new faculty members
+- Update existing faculty profiles
+- Delete faculty records
+- Manage faculty data centrally
+
+---
+
+## 🛠️ Technologies Used
+
+- **Frontend:**
+
+  - HTML5
+  - CSS3
+  - JavaScript (Vanilla JS)
+
+- **Backend & Services:**
+  - Firebase Firestore (Database)
+  - Firebase Authentication
+  - Firebase Hosting
+
+---
+
+## 🔐 Security Notes
+
+For academic demonstration purposes, the Firestore database is configured with open read/write rules.  
+Role-based access control and advanced security measures can be implemented in future versions using Firebase Authentication and Security Rules.
+
+---
+
+## 📂 Project Structure
+
+```text
+WebProject-V4/
+│
+├── css/                 # Stylesheets
+├── js/                  # JavaScript logic (auth, firebase, doctors, utils)
+├── index.html           # Entry / login page
+├── DoctorDirectory.html # Faculty listing page
+├── firebase.json        # Firebase configuration
+├── firestore.rules      # Firestore security rules
+├── firestore.indexes.json
+├── .firebaserc
+├── .gitignore
+└── README.md
+```

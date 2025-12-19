@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Staff Directory | Admin Panel</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./css/DoctorDirectoryStyle.css">
+  <script type="module" src="./js/main.js"></script>
+</head>
+
+<body>
+  <div class="background-animation">
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+  </div>
+
+  <div class="app-container">
+
+    <main class="main-content">
+      <header class="header-action">
+        <div class="title-section">
+          <h1>Staff Directory</h1>
+          <p>Manage your staff members</p>
+        </div>
+
+        <div class="header-buttons">
+          <button id="logoutBtn" class="logout-btn-header">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
+              <polyline points="16 17 21 12 16 7"></polyline>
+              <line x1="21" y1="12" x2="9" y2="12"></line>
+            </svg>
+            Logout
+          </button>
+
+          <button class="add-btn" onclick="openAddModal()">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <line x1="12" y1="5" x2="12" y2="19"></line>
+              <line x1="5" y1="12" x2="19" y2="12"></line>
+            </svg>
+            Add New Doctor
+          </button>
+        </div>
+      </header>
+
+      <div class="filters-bar">
+        <div class="search-box">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="11" cy="11" r="8"></circle>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+          </svg>
+          <input type="text" id="searchInput" placeholder="Search by name, email or specialty...">
+        </div>
+        <select id="departmentSelect" class="filter-select">
+          <option value="All">All Departments</option>
+          <option>Artificial Intelligence</option>
+          <option>Cyber Security</option>
+          <option>Software Engineering</option>
+          <option>Data Science</option>
+          <option>Information System</option>
+          <option>Web Development</option>
+          <option>Application Development</option>
+          <option>Information Tecnology</option>
+          <option>Computer Science</option>
+        </select>
+      </div>
+
+      <div class="doctor-grid" id="doctorGrid">
+        <div style="text-align:center; grid-column: 1/-1; padding: 40px; color: var(--text-muted);">
+          Loading doctors...
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <div id="add-modal" class="modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 id="modalTitle">Add New Doctor</h2>
+        <button class="close-modal"
+          onclick="document.getElementById('add-modal').classList.remove('show')">&times;</button>
+      </div>
+
+      <form id="addDoctorForm">
+
+        <div class="form-group">
+          <label>Profile Picture URL</label>
+          <input type="url" id="add-profilePic" placeholder="https://...">
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label>Full Name</label>
+            <input type="text" id="add-name" required placeholder="e.g. Eng. Seif">
+          </div>
+          <div class="form-group">
+            <label>Email Address</label>
+            <input type="email" id="add-email" required placeholder="name@ecu.edu.eg">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>Courses</label>
+          <input type="text" id="add-courses" required placeholder="e.g. AI, CyberSecurity">
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label>Position</label>
+            <input type="text" id="add-position" required placeholder="e.g. Teaching Assistant">
+          </div>
+          <div class="form-group">
+            <label>Department</label>
+            <select id="add-department" required>
+              <option value="" disabled selected>Select Department</option>
+              <option value="Artificial Intelligence">Artificial Intelligence</option>
+              <option value="Cyber Security">Cyber Security</option>
+              <option value="Software Engineering">Software Engineering</option>
+              <option value="Data Science">Data Science</option>
+              <option value="Information System">Information System</option>
+              <option value="Web Development">Web Development</option>
+              <option value="Application Development">Application Development</option>
+              <option value="Information Tecnology">Information Tecnology</option>
+              <option value="Computer Science">Computer Science</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>Current University</label>
+          <input type="text" id="add-university" required placeholder="e.g. Egyptian Chinese University">
+        </div>
+
+        <button type="submit" class="add-btn" id="modalSubmitBtn" style="width: 100%; justify-content: center;">Add
+          Member</button>
+      </form>
+    </div>
+  </div>
+  <div id="toast" class="toast"></div>
+</body>
+
+</html>
